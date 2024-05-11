@@ -11,7 +11,8 @@ import Card from "@mui/material/Card";
 import MDTypography from "components/MDTypography";
 import DataTable from "examples/Tables/DataTable";
 import loanReqTableData from "layouts/tables/data/loanReqTableData";
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
+import SimpleDefaultCard from "examples/Cards/InfoCards/SimpleDefaultCard";
+
 
 
 
@@ -21,7 +22,48 @@ function DashboardBank() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <Grid item xs={12}>
+      <MDBox mt={2} py={3}>
+        
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <SimpleDefaultCard
+                title= "Total Requests"
+                description="Total number of loan requests"
+                value="238"
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <SimpleDefaultCard
+                description= "Avg NN Score of all applicants"
+                title="NN Smart score"
+                value="631.78"
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <SimpleDefaultCard
+                title= "Credit risk"
+                description="Avg credit risk of all applicants"
+                value="73.64"
+              />
+            </MDBox>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <MDBox mb={1.5}>
+              <SimpleDefaultCard
+                title= "Total Loan amount"
+                description="Total amount requested"
+                value="₹13.2 Cr"
+              />
+            </MDBox>
+          </Grid>
+        </Grid>
+      </MDBox>
+      <Grid mb={3} item xs={12}>
             <Card>
               <MDBox
                 mx={2}
@@ -48,67 +90,6 @@ function DashboardBank() {
               </MDBox>
             </Card>
           </Grid>
-      <MDBox mt={2} py={3}>
-        
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="dark"
-                icon="person_add"
-                title="Total Requests"
-                count={281}
-                percentage={{
-                  color: "success",
-                  amount: "+55%",
-                  label: "than last week",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <DefaultInfoCard
-                // color="success"
-                // icon=
-                title= "Total Requests"
-                description="Total no. of loan requests"
-                value="238"
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="success"
-                icon="store"
-                title="Avg Credit Score"
-                count="34k"
-                percentage={{
-                  color: "success",
-                  amount: "+1%",
-                  label: "than yesterday",
-                }}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={3}>
-            <MDBox mb={1.5}>
-              <ComplexStatisticsCard
-                color="primary"
-                icon=""
-                title="Total Requests"
-                count="+91"
-                percentage={{
-                  color: "success",
-                  amount: "",
-                  label: "Just updated",
-                }}
-              />
-            </MDBox>
-          </Grid>
-        </Grid>
-      </MDBox>
       <Footer />
     </DashboardLayout>
   );

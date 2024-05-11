@@ -5,24 +5,10 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 
-function DefaultInfoCard({ color, icon, title, description, value }) {
+function SimpleDefaultCard({ color, icon, title, description, value }) {
   return (
     <Card>
       <MDBox p={2} mx={3} display="flex" justifyContent="center">
-        <MDBox
-          display="grid"
-          justifyContent="center"
-          alignItems="center"
-          bgColor={color}
-          color="white"
-          width="2rem"
-          height="2rem"
-          shadow="md"
-          borderRadius="lg"
-          variant="gradient"
-        >
-          <Icon fontSize="default">{icon}</Icon>
-        </MDBox>
       </MDBox>
       <MDBox pb={2} px={2} textAlign="center" lineHeight={1.25}>
         <MDTypography variant="h6" fontWeight="medium" textTransform="capitalize">
@@ -45,14 +31,14 @@ function DefaultInfoCard({ color, icon, title, description, value }) {
 }
 
 // Setting default values for the props of DefaultInfoCard
-DefaultInfoCard.defaultProps = {
+SimpleDefaultCard.defaultProps = {
   color: "info",
   value: "",
   description: "",
 };
 
 // Typechecking props for the DefaultInfoCard
-DefaultInfoCard.propTypes = {
+SimpleDefaultCard.propTypes = {
   color: PropTypes.oneOf(["primary", "secondary", "info", "success", "warning", "error", "dark"]),
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
@@ -60,4 +46,4 @@ DefaultInfoCard.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-export default DefaultInfoCard;
+export default SimpleDefaultCard;

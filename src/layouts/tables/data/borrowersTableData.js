@@ -31,7 +31,6 @@ export default function data() {
       { Header: "Total Loan Amt", accessor: "budget", align: "center" },
       { Header: "interest", accessor: "status", align: "center" },
       { Header: "Loan Repaid", accessor: "completion", align: "center" },
-      { Header: "action", accessor: "action", align: "center" },
     ],
     rows: [
       {
@@ -47,11 +46,7 @@ export default function data() {
           </MDTypography>
         ),
         completion: <Progress color="info" value={60} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        
       },
       {
         borrowers: <Borrowers title="Github" description="Mr. John Doe" />,
@@ -66,11 +61,7 @@ export default function data() {
           </MDTypography>
         ),
         completion: <Progress color="success" value={100} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        
       },
       {
         borrowers: <Borrowers title="Atlassian" description="Ms. Jane Smith" />,
@@ -85,11 +76,7 @@ export default function data() {
           </MDTypography>
         ),
         completion: <Progress color="error" value={30} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        
       },
       {
         borrowers: <Borrowers title="Slack" description="Mr. Sam Rogers" />,
@@ -104,11 +91,7 @@ export default function data() {
           </MDTypography>
         ),
         completion: <Progress color="info" value={80} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        
       },
       {
         borrowers: <Borrowers title="Spotify" description="Mr. William Brown" />,
@@ -123,11 +106,7 @@ export default function data() {
           </MDTypography>
         ),
         completion: <Progress color="error" value={0} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        
       },
       {
         borrowers: <Borrowers title="Invesion" description="Mr. Chris Brown" />,
@@ -142,11 +121,7 @@ export default function data() {
           </MDTypography>
         ),
         completion: <Progress color="success" value={100} />,
-        action: (
-          <MDTypography component="a" href="#" color="text">
-            <Icon>more_vert</Icon>
-          </MDTypography>
-        ),
+        
       },
     ],
   };
