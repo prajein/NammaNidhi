@@ -18,7 +18,6 @@ import {
   navbarMobileMenu,
 } from "examples/Navbars/DashboardNavbar/styles";
 
-
 import {
   useMaterialUIController,
   setTransparentNavbar,
