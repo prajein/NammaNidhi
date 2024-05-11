@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
-
+// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
@@ -12,7 +12,7 @@ import Divider from "@mui/material/Divider";
 // Images
 import loanIcon from "assets/images/bg-profile.jpeg";
 
-
+// Material Dashboard 2 React context
 import { useMaterialUIController } from "context";
 
 function SubCard({ title, value }) {
@@ -52,10 +52,12 @@ function LoanApplyCard() {
         <MDTypography variant="h6" fontWeight="medium">
           Apply for Loan
         </MDTypography>
+        <a href="/applyloan" style={{ textDecoration: "none" }}>
         <MDButton variant="gradient" color="dark">
           <Icon sx={{ fontWeight: "bold" }}>add</Icon>
           &nbsp;Apply for New Loan
         </MDButton>
+        </a>
       </MDBox>
       <Divider />
       <MDBox p={2}>

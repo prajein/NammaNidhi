@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
+
 import Grid from "@mui/material/Grid";
+
 import MDBox from "components/MDBox";
+
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
-// Authentication layout components
 import Footer from "layouts/authentication/components/Footer";
 
 function CoverLayout({ coverHeight, image, children }) {
@@ -34,13 +36,16 @@ function CoverLayout({ coverHeight, image, children }) {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <MDBox mt={{ xs: -20, lg: -18 }} px={1} mx={0} width="100%" maxWidth={{ xs: "100%", sm: "90%", md: "80%", lg: "70%", xl: "60%" }}> {/* Update px, mx, and maxWidth */}
-        <Grid justifyContent="center">
-          <Grid item xs={12} sm={9} md={8} lg={6} xl={5}> 
-            {children}
-          </Grid>
-        </Grid>
-      </MDBox>
+      <MDBox mt={{ xs: -20, lg: -18 }} px={1} mx="auto" width={{ xs: "100%", lg: "60%" }}> 
+  <Grid justifyContent="center"> 
+    <Grid item xs={12} sm={10} md={8} lg={6} xl={5}> 
+      {children}
+    </Grid>
+  </Grid>
+</MDBox>
+
+
+
       {/* <Footer /> */}
     </PageLayout>
   );
