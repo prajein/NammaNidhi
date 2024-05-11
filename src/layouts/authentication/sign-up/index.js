@@ -31,6 +31,7 @@ function FirstPage({ onNext }) {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [gstin, setGstin] = useState("");
 
   const handleChange = (event) => {
     setSelectedType(event.target.value);
@@ -73,7 +74,7 @@ function FirstPage({ onNext }) {
         textAlign="center"
       >
         <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-          Join us today
+          Join Namma Nidhi (Our Treasure), today!
         </MDTypography>
         <MDTypography display="block" variant="button" color="white" my={1}>
           Enter your email and password to register
@@ -223,6 +224,7 @@ function SecondPage({ onNext, type }) {
                   type="text"
                   label="SME's GSTIN Number"
                   variant="standard"
+                  onChange={(e) => setGstin(e.target.value)}
                   fullWidth
                 />
               </MDBox>
@@ -339,13 +341,13 @@ function SecondPage({ onNext, type }) {
             </MDTypography>
           </MDBox>
           <MDBox pt={4} pb={3} px={3}>
-            {/* Input Fields for SME */}
             <MDBox component="form" role="form">
               <MDBox mb={2}>
                 <MDInput
                   type="text"
                   label="SME's GSTIN Number"
                   variant="standard"
+                  onChange={(e) => setGstin(e.target.value)}
                   fullWidth
                 />
               </MDBox>
