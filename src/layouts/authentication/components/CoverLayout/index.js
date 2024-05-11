@@ -1,11 +1,6 @@
 import PropTypes from "prop-types";
-
 import Grid from "@mui/material/Grid";
-
 import MDBox from "components/MDBox";
-
-
-// Material Dashboard 2 React example components
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
@@ -16,11 +11,6 @@ function CoverLayout({ coverHeight, image, children }) {
   return (
     <PageLayout>
       <DefaultNavbar
-        action={{
-          type: "external",
-          route: "https://creative-tim.com/product/material-dashboard-react",
-          label: "free download",
-        }}
         transparent
         light
       />

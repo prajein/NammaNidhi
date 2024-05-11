@@ -18,7 +18,7 @@ import {
   navbarMobileMenu,
 } from "examples/Navbars/DashboardNavbar/styles";
 
-// Material Dashboard 2 React context
+
 import {
   useMaterialUIController,
   setTransparentNavbar,
