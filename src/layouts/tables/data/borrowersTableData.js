@@ -1,24 +1,16 @@
+import React from "react";
 import Icon from "@mui/material/Icon";
-
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDAvatar from "components/MDAvatar";
 import MDProgress from "components/MDProgress";
 
-import LogoAsana from "assets/images/small-logos/logo-asana.svg";
-import logoGithub from "assets/images/small-logos/github.svg";
-import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
-import logoSlack from "assets/images/small-logos/logo-slack.svg";
-import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
-import logoInvesion from "assets/images/small-logos/logo-invision.svg";
-
 export default function data() {
-  const Project = ({ image, name }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" variant="rounded" />
-      <MDTypography display="block" variant="button" fontWeight="medium" ml={1} lineHeight={1}>
-        {name}
+  const Borrowers = ({ title, description }) => (
+    <MDBox lineHeight={1} textAlign="left">
+      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
+        {title}
       </MDTypography>
+      <MDTypography variant="caption">{description}</MDTypography>
     </MDBox>
   );
 
@@ -35,16 +27,15 @@ export default function data() {
 
   return {
     columns: [
-      { Header: "Organizations", accessor: "project", width: "30%", align: "left" },
-      { Header: "budget", accessor: "budget", align: "left" },
-      { Header: "status", accessor: "status", align: "center" },
-      { Header: "Chance of Loan", accessor: "completion", align: "center" },
+      { Header: "Organizations", accessor: "borrowers", width: "20%", align: "left" },
+      { Header: "Total Loan Amt", accessor: "budget", align: "center" },
+      { Header: "interest", accessor: "status", align: "center" },
+      { Header: "Loan Repaid", accessor: "completion", align: "center" },
       { Header: "action", accessor: "action", align: "center" },
     ],
-
     rows: [
       {
-        project: <Project image={LogoAsana} name="Asana" />,
+        borrowers: <Borrowers title="Asana" description="Mr. Shanthosh" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             $2,500
@@ -63,7 +54,7 @@ export default function data() {
         ),
       },
       {
-        project: <Project image={logoGithub} name="Github" />,
+        borrowers: <Borrowers title="Github" description="Mr. John Doe" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             $5,000
@@ -82,7 +73,7 @@ export default function data() {
         ),
       },
       {
-        project: <Project image={logoAtlassian} name="Atlassian" />,
+        borrowers: <Borrowers title="Atlassian" description="Ms. Jane Smith" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             $3,400
@@ -101,7 +92,7 @@ export default function data() {
         ),
       },
       {
-        project: <Project image={logoSpotify} name="Spotify" />,
+        borrowers: <Borrowers title="Slack" description="Mr. Sam Rogers" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             $14,000
@@ -120,7 +111,7 @@ export default function data() {
         ),
       },
       {
-        project: <Project image={logoSlack} name="Slack" />,
+        borrowers: <Borrowers title="Spotify" description="Mr. William Brown" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             $1,000
@@ -139,7 +130,7 @@ export default function data() {
         ),
       },
       {
-        project: <Project image={logoInvesion} name="Invesion" />,
+        borrowers: <Borrowers title="Invesion" description="Mr. Chris Brown" />,
         budget: (
           <MDTypography component="a" href="#" variant="button" color="text" fontWeight="medium">
             $2,300

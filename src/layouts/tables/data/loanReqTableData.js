@@ -8,12 +8,15 @@ import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 
 export default function data() {
-  const LoanRequest = ({ smeName, amountRequested, creditScore, creditRisk, category }) => (
+  const LoanRequest = ({ title, description, amountRequested, creditScore, creditRisk, category }) => (
     <MDBox display="flex" alignItems="center" lineHeight={1}>
       <MDBox>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {smeName}
-        </MDTypography>
+      <MDBox lineHeight={1} textAlign="left">
+      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
+        {title}
+      </MDTypography>
+      <MDTypography variant="caption">{description}</MDTypography>
+    </MDBox>
         <MDTypography variant="caption">{amountRequested}</MDTypography>
       </MDBox>
       <MDBox ml={2}>
