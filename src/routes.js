@@ -1,3 +1,4 @@
+import Dashboard from "layouts/dashboardbank";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Profile from "layouts/profile";
@@ -8,7 +9,8 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import LoanOffers from "layouts/loanoffers";
 import SMEFillCard from "layouts/dashboard/components/SMEFillCard";
 import SMEProfile from "layouts/SMEDetails";
-import Dashboard from "layouts/dashboard";
+import Borrowers from "layouts/borrowers";
+import LoanApplication from "layouts/Applyloan";
 
 const routes = [
   {
@@ -26,6 +28,14 @@ const routes = [
     icon: <AccountBalanceIcon></AccountBalanceIcon>,
     route: "/loanoffers",
     component: <LoanOffers />,
+  },
+  {
+    type: "collapse",
+    name: "Borrowers",
+    key: "borrowers",
+    icon: <AccountBalanceIcon></AccountBalanceIcon>,
+    route: "/borrowersinfo",
+    component: <Borrowers />,
   },
   {
     type: "collapse",
@@ -68,9 +78,16 @@ const routes = [
     component: <SignUp />,
   },
   {
+    name: "SME Fill up",
     route: "/smefillup", 
+    key: "sme-fill",
     component: <SMEProfile />
-  } 
+  },
+  {
+    name: "Loan Application",
+    route: "/applyloan",
+    component: <LoanApplication />
+  }
 ];
 
 export default routes;
