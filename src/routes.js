@@ -1,4 +1,3 @@
-import Dashboard from "layouts/dashboardbank";
 import Tables from "layouts/tables";
 import Billing from "layouts/billing";
 import Profile from "layouts/profile";
@@ -9,6 +8,7 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import LoanOffers from "layouts/loanoffers";
 import SMEFillCard from "layouts/dashboard/components/SMEFillCard";
 import SMEProfile from "layouts/SMEDetails";
+import Dashboard from "layouts/dashboard";
 
 const routes = [
   {

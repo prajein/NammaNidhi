@@ -1,4 +1,3 @@
-
 import PropTypes from "prop-types";
 
 // @mui material components
@@ -7,7 +6,7 @@ import Icon from "@mui/material/Icon";
 
 import MDBox from "components/MDBox";
 
-s
+
 import { useMaterialUIController } from "context";
 
 function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
