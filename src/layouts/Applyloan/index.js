@@ -8,25 +8,23 @@ import MDTypography from "components/MDTypography";
 import Card from "@mui/material/Card";
 import Footer from "examples/Footer";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import MDInput from "components/MDInput";
 import Alert from "@mui/material/Alert";
 import LinearProgress from "@mui/material/LinearProgress";
 import MDButton from "components/MDButton";
+import { TextField } from "@mui/material";
 
 function LoanApplication() {
   const [progress, setProgress] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [udhyogAadhaarNo, setUdhyogAadhaarNo] = useState("");
-  const [gstCert, setGstCert] = useState(null);
+  const [balanceSheet, setBalanceSheet] = useState(null);
+  const [sanctionLetter, setSanctionLetter] = useState(null);
   const [businessType, setBusinessType] = useState("");
   const [loanPurpose, setLoanPurpose] = useState("");
   const [industry, setIndustry] = useState("");
-  const [partnershipDeed, setPartnershipDeed] = useState(null);
-  const [moaAndAoa, setMoaAndAoa] = useState(null);
-  const [certOfIncorporation, setCertOfIncorporation] = useState(null);
   const [annualRevenue, setAnnualRevenue] = useState("");
   const [profitMargin, setProfitMargin] = useState("");
-  const [balanceSheet, setBalanceSheet] = useState(null);
   const [bankStatements, setBankStatements] = useState(null);
   const [taxReturns, setTaxReturns] = useState(null);
   const [loanAmountRequested, setLoanAmountRequested] = useState("");
@@ -40,17 +38,17 @@ function LoanApplication() {
 
   const handleNextStep = () => {
     if (currentStep === 1) {
-      if (!udhyogAadhaarNo || !gstCert || !businessType || !loanPurpose || !industry) {
+      if (!udhyogAadhaarNo ||  !loanPurpose || !industry || !sanctionLetter) {
         setErrorMessage("Please fill in all the required fields.");
         return;
       }
     } else if (currentStep === 2) {
-      if (!annualRevenue || !profitMargin || !balanceSheet || !bankStatements || !taxReturns) {
+      if (!annualRevenue || !profitMargin || !balanceSheet) {
         setErrorMessage("Please fill in all the required fields.");
         return;
       }
     } else if (currentStep === 3) {
-      if (!loanAmountRequested || !loanPurpose || !repaymentPeriod) {
+      if (!loanAmountRequested || !repaymentPeriod) {
         setErrorMessage("Please fill in all the required fields.");
         return;
       }
@@ -96,9 +94,9 @@ function LoanApplication() {
               <MDBox p={3}>
                 {currentStep === 1 && (
                   <>
-                    <MDTypography variant="h6">Business Info</MDTypography>
+                    <MDTypography variant="h6">Step 1: Basic Financial Information</MDTypography>
                     <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
                         label="Udyog Aadhaar No."
                         value={udhyogAadhaarNo}
@@ -109,24 +107,12 @@ function LoanApplication() {
                       <input
                         type="file"
                         accept=".pdf,.jpg,.png"
-                        onChange={(e) => setGstCert(e.target.files[0])}
+                        onChange={(e) => setSanctionLetter(e.target.files[0])}
                       />
+                      <span style={{fontSize:"14px"}}>Sanction Letter</span>
                     </MDBox>
                     <MDBox mt={2}>
-                      <TextField
-                        select
-                        fullWidth
-                        label="Business Type"
-                        value={businessType}
-                        onChange={(e) => setBusinessType(e.target.value)}
-                      >
-                        <option value="Proprietor">Proprietor</option>
-                        <option value="Partnership">Partnership</option>
-                        <option value="Pvt">Pvt</option>
-                      </TextField>
-                    </MDBox>
-                    <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
                         label="Loan Purpose"
                         value={loanPurpose}
@@ -134,7 +120,7 @@ function LoanApplication() {
                       />
                     </MDBox>
                     <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
                         label="Industry"
                         value={industry}
@@ -145,9 +131,9 @@ function LoanApplication() {
                 )}
                 {currentStep === 2 && (
                   <>
-                    <MDTypography variant="h6">Financial Info</MDTypography>
+                    <MDTypography variant="h6">Step 2: Profitability Analysis</MDTypography>
                     <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
                         label="Annual Revenue"
                         type="number"
@@ -156,7 +142,7 @@ function LoanApplication() {
                       />
                     </MDBox>
                     <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
                         label="Profit Margin"
                         type="number"
@@ -170,28 +156,15 @@ function LoanApplication() {
                         accept=".pdf,.jpg,.png"
                         onChange={(e) => setBalanceSheet(e.target.files[0])}
                       />
-                    </MDBox>
-                    <MDBox mt={2}>
-                      <input
-                        type="file"
-                        accept=".pdf,.jpg,.png"
-                        onChange={(e) => setBankStatements(e.target.files[0])}
-                      />
-                    </MDBox>
-                    <MDBox mt={2}>
-                      <input
-                        type="file"
-                        accept=".pdf,.jpg,.png"
-                        onChange={(e) => setTaxReturns(e.target.files[0])}
-                      />
+                      <span style={{fontSize:"14px"}}>Balance Sheets</span>
                     </MDBox>
                   </>
                 )}
                 {currentStep === 3 && (
                   <>
-                    <MDTypography variant="h6">Loan Details</MDTypography>
+                    <MDTypography variant="h6">Step 3: Working Capital Analysis</MDTypography>
                     <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
                         label="Loan Amount Requested"
                         type="number"
@@ -200,7 +173,7 @@ function LoanApplication() {
                       />
                     </MDBox>
                     <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
                         label="Repayment Period"
                         value={repaymentPeriod}
@@ -208,9 +181,9 @@ function LoanApplication() {
                       />
                     </MDBox>
                     <MDBox mt={2}>
-                      <TextField
+                      <MDInput
                         fullWidth
-                        label="Proposed Collateral"
+                        label="Proposed Collateral (if any)"
                         value={proposedCollateral}
                         onChange={(e) => setProposedCollateral(e.target.value)}
                       />
@@ -219,13 +192,14 @@ function LoanApplication() {
                 )}
                 {currentStep === 4 && (
                   <>
-                    <MDTypography variant="h6">Additional Info</MDTypography>
+                    <MDTypography variant="h6">Step 4: Additional Information for the financial institutions</MDTypography>
                     <MDBox mt={2}>
                       <input
                         type="file"
                         accept=".pdf,.jpg,.png"
                         onChange={(e) => setCurrentDebtObligations(e.target.files[0])}
                       />
+                      <span>Income Tax Returns (optional)</span>
                     </MDBox>
                     <MDBox mt={2}>
                       <input
@@ -233,6 +207,7 @@ function LoanApplication() {
                         accept=".pdf,.jpg,.png"
                         onChange={(e) => setBusinessPlan(e.target.files[0])}
                       />
+                      <span>Business Plan (optional)</span>
                     </MDBox>
                   </>
                 )}
@@ -256,7 +231,7 @@ function LoanApplication() {
                   <MDBox mt={3}>
                     <LinearProgress variant="determinate" value={progress} />
                     <MDTypography variant="subtitle1" mt={2}>
-                      Uploading {progress}%...
+                      Progress {progress}%...
                     </MDTypography>
                   </MDBox>
                 )}

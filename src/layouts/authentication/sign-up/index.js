@@ -25,7 +25,8 @@ function validatePassword(password) {
 }
 
 function FirstPage({ onNext }) {
-  const [selectedType, setSelectedType] = useState("");
+  const [selectedType, setSelectedType] = useState(""); //Role
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -86,6 +87,7 @@ function FirstPage({ onNext }) {
               label="Name"
               variant="standard"
               fullWidth
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </MDBox>
