@@ -1,3 +1,6 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/sivaplaysmC/finIncl-backend.git
+[submodule "mobile_app"]
+	path = mobile_app
+	url = https://github.com/Daksh11K/NammaNidhiApp
