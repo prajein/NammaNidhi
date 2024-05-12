@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Card from "@mui/material/Card";
@@ -35,6 +35,7 @@ function Cover() {
   const [passwordError, setPasswordError] = useState(false);
   const [data, setData] = useState("");
   const [d, setD] = useState(null);
+  const nav = useNavigate();
 
   const handleChange = (event) => {
     setSelectedType(event.target.value);
@@ -59,30 +60,18 @@ function Cover() {
     }
   };
 
-  const handleSignUp = () => {
-    fetch("http://rajalakshmiinstitutions.net:6996/user/create", {
-      method: "POST",
-      headers: { "Content-Type": "Application/json" },
-      body: JSON.stringify({
-        username: name,
-        password: password,
-        email: email,
-        smeName: gstin,
-      }),
-    });
-  };
-
   const handleGetCompanyDetails = async () => {
     const resp = await fetch(
-      "https://gst-return-status.p.rapidapi.com/free/gstin/27AAJCM9929L1ZM",
+      `https://gst-return-status.p.rapidapi.com/free/gstin/${gstin}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "X-RapidAPI-Key": "2048709673msha68caf7a53b895cp1cdce5jsn716f33d84e2e",
+          "X-RapidAPI-Key":
+            "2048709673msha68caf7a53b895cp1cdce5jsn716f33d84e2e",
           "X-RapidAPI-Host": "gst-return-status.p.rapidapi.com",
         },
-      }
+      },
     );
     const data = await resp.json();
     setD({
@@ -110,10 +99,20 @@ function Cover() {
               mb={1}
               textAlign="center"
             >
-              <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+              <MDTypography
+                variant="h4"
+                fontWeight="medium"
+                color="white"
+                mt={1}
+              >
                 Join Namma Nidhi (Our Treasure), today!
               </MDTypography>
-              <MDTypography display="block" variant="button" color="white" my={1}>
+              <MDTypography
+                display="block"
+                variant="button"
+                color="white"
+                my={1}
+              >
                 Enter your email and password to register
               </MDTypography>
             </MDBox>
@@ -157,8 +156,8 @@ function Cover() {
                   />
                   {passwordError && (
                     <MDTypography variant="caption" color="error">
-                      Password must contain at least 8 characters with alphanumeric
-                      and symbols
+                      Password must contain at least 8 characters with
+                      alphanumeric and symbols
                     </MDTypography>
                   )}
                 </MDBox>
@@ -172,7 +171,11 @@ function Cover() {
                       checked={selectedType === "SME"}
                       onChange={handleChange}
                     />
-                    <MDTypography variant="button" fontWeight="regular" color="text">
+                    <MDTypography
+                      variant="button"
+                      fontWeight="regular"
+                      color="text"
+                    >
                       &nbsp;&nbsp;SME (loan requester)
                     </MDTypography>
                   </MDBox>
@@ -182,7 +185,11 @@ function Cover() {
                       checked={selectedType === "Bank"}
                       onChange={handleChange}
                     />
-                    <MDTypography variant="button" fontWeight="regular" color="text">
+                    <MDTypography
+                      variant="button"
+                      fontWeight="regular"
+                      color="text"
+                    >
                       &nbsp;&nbsp;Banks/Organisations
                     </MDTypography>
                   </MDBox>
@@ -239,10 +246,20 @@ function Cover() {
                   >
                     <ArrowBackIcon style={{ color: "white" }} />
                   </IconButton>
-                  <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+                  <MDTypography
+                    variant="h4"
+                    fontWeight="medium"
+                    color="white"
+                    mt={1}
+                  >
                     Additional Details for SME
                   </MDTypography>
-                  <MDTypography display="block" variant="button" color="white" my={1}>
+                  <MDTypography
+                    display="block"
+                    variant="button"
+                    color="white"
+                    my={1}
+                  >
                     Enter additional details about your SME
                   </MDTypography>
                 </MDBox>
@@ -338,7 +355,7 @@ function Cover() {
                         variant="gradient"
                         color="info"
                         fullWidth
-                        onClick={handleSignUp}
+                        onClick={() => nav("/dasboard")}
                       >
                         Sign Up
                       </MDButton>
@@ -367,10 +384,20 @@ function Cover() {
                   >
                     <ArrowBackIcon style={{ color: "white" }} />
                   </IconButton>
-                  <MDTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+                  <MDTypography
+                    variant="h4"
+                    fontWeight="medium"
+                    color="white"
+                    mt={1}
+                  >
                     Additional Details for your Finance Organisation
                   </MDTypography>
-                  <MDTypography display="block" variant="button" color="white" my={1}>
+                  <MDTypography
+                    display="block"
+                    variant="button"
+                    color="white"
+                    my={1}
+                  >
                     Enter additional details about your finance organisation
                   </MDTypography>
                 </MDBox>
@@ -445,7 +472,7 @@ function Cover() {
                         variant="gradient"
                         color="info"
                         fullWidth
-                        onClick={handleSignUp}
+                        onClick={() => nav("/dasboard")}
                       >
                         Sign Up
                       </MDButton>

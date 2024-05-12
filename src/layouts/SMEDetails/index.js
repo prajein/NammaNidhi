@@ -23,7 +23,8 @@ function SMEProfile() {
   const [interestExpense, setInterestExpense] = useState("");
   const [netProfit, setNetProfit] = useState("");
   const [revenue, setRevenue] = useState("");
-  const [earningsBeforeInterestTaxes, setEarningsBeforeInterestTaxes] = useState("");
+  const [earningsBeforeInterestTaxes, setEarningsBeforeInterestTaxes] =
+    useState("");
   const [totalAssets, setTotalAssets] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -32,7 +33,9 @@ function SMEProfile() {
 
   const calculateCurrentRatio = () => {
     if (parseFloat(currentLiabilities) === 0) return "Infinity";
-    return (parseFloat(currentAssets) / parseFloat(currentLiabilities)).toFixed(2);
+    return (parseFloat(currentAssets) / parseFloat(currentLiabilities)).toFixed(
+      2,
+    );
   };
 
   const calculateQuickRatio = () => {
@@ -58,17 +61,22 @@ function SMEProfile() {
 
   const calculateReturnOnAssets = () => {
     if (parseFloat(currentAssets) === 0) return "Infinity";
-    return ((parseFloat(netProfit) / parseFloat(currentAssets)) * 100).toFixed(2);
+    return ((parseFloat(netProfit) / parseFloat(currentAssets)) * 100).toFixed(
+      2,
+    );
   };
 
   const calculateReturnOnEquity = () => {
     if (parseFloat(shareholdersEquity) === 0) return "Infinity";
-    return ((parseFloat(netProfit) / parseFloat(shareholdersEquity)) * 100).toFixed(2);
+    return (
+      (parseFloat(netProfit) / parseFloat(shareholdersEquity)) *
+      100
+    ).toFixed(2);
   };
 
   const calculateAssetTurnoverRatio = () => {
     if (parseFloat(currentAssets) === 0) return "Infinity";
-    return ((parseFloat(revenue) / parseFloat(currentAssets))).toFixed(2);
+    return (parseFloat(revenue) / parseFloat(currentAssets)).toFixed(2);
   };
 
   const handleSubmit = async () => {
@@ -106,7 +114,10 @@ function SMEProfile() {
       formData.append("interestExpense", interestExpense);
       formData.append("netProfit", netProfit);
       formData.append("revenue", revenue);
-      formData.append("earningsBeforeInterestTaxes", earningsBeforeInterestTaxes);
+      formData.append(
+        "earningsBeforeInterestTaxes",
+        earningsBeforeInterestTaxes,
+      );
       formData.append("totalAssets", totalAssets);
       if (sanctionLetters && sanctionLetters.length > 0) {
         Array.from(sanctionLetters).forEach((file) => {
@@ -115,10 +126,24 @@ function SMEProfile() {
       }
       formData.append("balanceSheet", balanceSheet);
       try {
-        const response = await fetch("http://192.168.170.130:5000/calculate_credit", {
+        const response = await fetch("http://localhost:5000/calculate_credit", {
           method: "POST",
           body: formData,
-          
+        });
+        if (response.ok) {
+          console.log(await response.json());
+          setSuccessMessage("Data submitted successfully!");
+        } else {
+          setErrorMessage("Failed to submit data.");
+        }
+      } catch (error) {
+        setErrorMessage("Failed to submit data.");
+      }
+
+      try {
+        const response = await fetch("http://localhost:5000/sanction", {
+          method: "POST",
+          body: formData,
         });
         if (response.ok) {
           console.log(await response.json());
@@ -131,7 +156,6 @@ function SMEProfile() {
       }
     }
   };
-  
 
   return (
     <DashboardLayout>
@@ -143,7 +167,9 @@ function SMEProfile() {
               <MDBox p={3}>
                 {step === 1 && (
                   <>
-                    <MDTypography variant="h6">Step 1: Financial Data</MDTypography>
+                    <MDTypography variant="h6">
+                      Step 1: Financial Data
+                    </MDTypography>
                     <MDBox mt={2}>
                       <TextField
                         fullWidth
@@ -220,14 +246,18 @@ function SMEProfile() {
                 )}
                 {step === 2 && (
                   <>
-                    <MDTypography variant="h6">Step 2: Next Year Financial Projections</MDTypography>
+                    <MDTypography variant="h6">
+                      Step 2: Next Year Financial Projections
+                    </MDTypography>
                     <MDBox mt={2}>
                       <TextField
                         fullWidth
                         label="Earnings Before Interest and Taxes (EBIT)"
                         type="number"
                         value={earningsBeforeInterestTaxes}
-                        onChange={(e) => setEarningsBeforeInterestTaxes(e.target.value)}
+                        onChange={(e) =>
+                          setEarningsBeforeInterestTaxes(e.target.value)
+                        }
                       />
                     </MDBox>
                     <MDBox mt={2}>
@@ -243,17 +273,23 @@ function SMEProfile() {
                 )}
                 {step === 3 && (
                   <>
-                    <MDTypography variant="h6">Step 3: Upload Documents</MDTypography>
+                    <MDTypography variant="h6">
+                      Step 3: Upload Documents
+                    </MDTypography>
                     <MDBox mt={2}>
-                      <span style={{fontSize:"12px"}}> Sanction Letters: 
-                        <input 
-                          type="file" 
-                          multiple 
-                          accept=".pdf,.doc,.docx" 
-                          onChange={(e) => setSanctionLetters(e.target.files)} 
+                      <span style={{ fontSize: "12px" }}>
+                        {" "}
+                        Sanction Letters:
+                        <input
+                          type="file"
+                          multiple
+                          accept=".pdf,.doc,.docx"
+                          onChange={(e) => setSanctionLetters(e.target.files)}
                         />
                       </span>
-                      <span style={{fontSize:"12px"}}> Balance Sheet: 
+                      <span style={{ fontSize: "12px" }}>
+                        {" "}
+                        Balance Sheet:
                         <input
                           fullWidth
                           type="file"
@@ -287,7 +323,8 @@ function SMEProfile() {
                         Debt-to-Equity Ratio: {calculateDebtToEquityRatio()}
                       </MDTypography>
                       <MDTypography variant="subtitle1">
-                        Interest Coverage Ratio: {calculateInterestCoverageRatio()}
+                        Interest Coverage Ratio:{" "}
+                        {calculateInterestCoverageRatio()}
                       </MDTypography>
                       <MDTypography variant="subtitle1">
                         Net Profit Margin: {calculateNetProfitMargin()}%
@@ -307,7 +344,8 @@ function SMEProfile() {
                   {step === 2 && (
                     <>
                       <MDTypography variant="subtitle1">
-                        Earnings Before Interest and Taxes (EBIT): {earningsBeforeInterestTaxes}
+                        Earnings Before Interest and Taxes (EBIT):{" "}
+                        {earningsBeforeInterestTaxes}
                       </MDTypography>
                       <MDTypography variant="subtitle1">
                         Total Assets: {totalAssets}
