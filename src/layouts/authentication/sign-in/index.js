@@ -14,7 +14,7 @@ import { Password } from "@mui/icons-material";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
-  const [sme, setSme] = useState(false); 
+  const [sme, setSme] = useState(true); 
   const nav = useNavigate();
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
@@ -31,7 +31,7 @@ function Basic() {
       }).toString(),
     });
     console.log(res)
-    if (res && res.is_sme!=="1") {
+    if (res && res.is_sme) {
       setSme(!sme);
       localStorage.setItem("SME",JSON.stringify(sme));
       nav("/dashboard");

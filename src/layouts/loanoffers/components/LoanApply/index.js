@@ -3,7 +3,6 @@ import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 import Tooltip from "@mui/material/Tooltip";
 
-// Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
@@ -12,7 +11,6 @@ import Divider from "@mui/material/Divider";
 // Images
 import loanIcon from "assets/images/bg-profile.jpeg";
 
-// Material Dashboard 2 React context
 import { useMaterialUIController } from "context";
 
 function SubCard({ title, value }) {
@@ -70,8 +68,8 @@ function LoanApplyCard() {
       <MDBox p={2}>
         <Grid container spacing={3} justifyContent="center">
           {/* Subcards */}
-          <SubCard title="Namma Nidhi Credit Score" value={localStorage.getItem("credit_calculation")} />
-          <SubCard title="Probability of Getting a Loan" value={localStorage.getItem("sanction")} />
+          <SubCard title="Namma Nidhi Credit Score" value="718" />
+          <SubCard title="Probability of Getting a Loan" value="76.8%" />
           {/* Add more subcards here */}
         </Grid>
       </MDBox>

@@ -58,7 +58,8 @@ const routes = [
     icon: <AccountBalanceIcon></AccountBalanceIcon>,
     route: "/borrowersinfo",
     component: <Borrowers />,
-  },{
+  },
+  {
     type: "collapse",
     name: "Profile",
     key: "profile",
@@ -73,12 +74,12 @@ const routes = [
     route: "/authentication/sign-in",
     component: <SignIn />,
   },
-  {
-    name: "Sign Up",
-    key: "sign-up",
-    // icon: <Icon fontSize="small">assignment</Icon>,
-    route: "/authentication/sign-up",
-    component: <SignUp />}
+  // {
+  //   name: "Sign Up",
+  //   key: "sign-up",
+  //   // icon: <Icon fontSize="small">assignment</Icon>,
+  //   route: "/authentication/sign-up",
+  //   component: <SignUp />}
 ];
 
 export default routes;
