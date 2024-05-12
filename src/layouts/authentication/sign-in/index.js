@@ -30,7 +30,8 @@ function Basic() {
         password: data2,
       }).toString(),
     });
-    if (res && res.is_sme) {
+    console.log(res)
+    if (res && res.is_sme!=="1") {
       setSme(!sme);
       localStorage.setItem("SME",JSON.stringify(sme));
       nav("/dashboard");
@@ -107,13 +108,13 @@ function Basic() {
                 Don&apos;t have an account?{" "}
                 <MDTypography
                   component={Link}
-                  to="/dashboard"
+                  to="/authentication/sign-up"
                   variant="button"
                   color="info"
                   fontWeight="medium"
                   textGradient
                 >
-                  Sign in
+                  Sign up
                 </MDTypography>
               </MDTypography>
             </MDBox>
