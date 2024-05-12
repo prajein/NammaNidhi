@@ -13,7 +13,7 @@ import Borrowers from "layouts/borrowers";
 import LoanApplication from "layouts/Applyloan";
 import DashboardBank from "layouts/dashboardbank";
 
-const smeRoutes = [
+const routes = [
   {
     type: "collapse",
     name: "Dashboard",
@@ -30,14 +30,6 @@ const smeRoutes = [
     route: "/loanoffers",
     component: <LoanOffers />,
   },
-  // {
-  //   type: "collapse",
-  //   name: "Tables",
-  //   key: "tables",
-  //   icon: <Icon fontSize="small">table_view</Icon>,
-  //   route: "/tables",
-  //   component: <Tables />,
-  // },
   {
     type: "collapse",
     name: "Billing",
@@ -63,10 +55,10 @@ const smeRoutes = [
     component: <SignIn />,
   },
   {
-    // type: "collapse",
-    // name: "Sign Up",
-    // key: "sign-up",
-    // icon: <Icon fontSize="small">assignment</Icon>,
+    type: "collapse",
+    name: "Sign Up",
+    key: "sign-up",
+    icon: <Icon fontSize="small">assignment</Icon>,
     route: "/authentication/sign-up",
     component: <SignUp />,
   },
@@ -81,9 +73,6 @@ const smeRoutes = [
     route: "/applyloan",
     component: <LoanApplication />,
   },
-];
-
-const bankRoutes = [
   {
     type: "collapse",
     name: "Dashboard",
@@ -99,25 +88,7 @@ const bankRoutes = [
     icon: <AccountBalanceIcon></AccountBalanceIcon>,
     route: "/borrowersinfo",
     component: <Borrowers />,
-  },
-  {
-    type: "collapse",
-    name: "Profile",
-    key: "profile",
-    icon: <Icon fontSize="small">person</Icon>,
-    route: "/profile",
-    component: <Profile />,
-  },
-  {
-    type: "collapse",
-    name: "Log Out",
-    key: "log-out",
-    icon: <Icon fontSize="small">logout</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
+  }
 ];
-
-const routes = [smeRoutes, bankRoutes];
 
 export default routes;

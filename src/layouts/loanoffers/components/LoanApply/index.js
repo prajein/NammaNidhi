@@ -63,8 +63,8 @@ function LoanApplyCard() {
       <MDBox p={2}>
         <Grid container spacing={3} justifyContent="center">
           {/* Subcards */}
-          <SubCard title="Namma Nidhi Credit Score" value="745" />
-          <SubCard title="Probability of Getting a Loan" value="80%" />
+          <SubCard title="Namma Nidhi Credit Score" value={localStorage.getItem("credit_calculation")} />
+          <SubCard title="Probability of Getting a Loan" value={localStorage.getItem("sanction")} />
           {/* Add more subcards here */}
         </Grid>
       </MDBox>

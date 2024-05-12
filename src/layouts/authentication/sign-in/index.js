@@ -10,11 +10,26 @@ import BasicLayout from "layouts/authentication/components/BasicLayout";
 
 // Images
 import bgImage from "assets/images/bgsign2.jpeg";
+import { Password } from "@mui/icons-material";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  async function handleSub(event){
+    const res = await fetch("http://192.168.170.32:6969/user/login",{
+      method:"POST",
+      body: encodeURI(`username=${(data1)}&password=${data2}`) 
+    })
+
+    if(await res.ok){
+      console.log(await res);
+    }
+  }
+
+  const [data1, setData1] = useState("")
+  const [data2, setData2] = useState("")
 
   return (
     <BasicLayout image={bgImage}>
@@ -37,10 +52,10 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" label="Email" fullWidth />
+              <MDInput type="email" onChange={(e)=>setData1(e.target.value)} label="Email" fullWidth />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" label="Password" fullWidth />
+              <MDInput type="password" onChange={(e)=>setData2(e.target.value)} label="Password" fullWidth />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -55,7 +70,7 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" fullWidth>
+              <MDButton variant="gradient" color="info" onClick={handleSub} fullWidth>
                 sign in
               </MDButton>
             </MDBox>

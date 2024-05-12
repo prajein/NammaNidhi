@@ -115,7 +115,7 @@ export default function App() {
                 : brandWhite
             }
             brandName="Namma Nidhi"
-            routes={localStorage.getItem("bank") ? routes[1] : routes[0]}
+            routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
