@@ -37,6 +37,11 @@ function Cover() {
   const [d, setD] = useState(null);
   const nav = useNavigate();
 
+  const handleSignUp = () => {
+    localStorage.setItem("bank", selectedType === "Bank");
+    nav("/dashboard");
+  };
+
   const handleChange = (event) => {
     setSelectedType(event.target.value);
   };
@@ -355,7 +360,7 @@ function Cover() {
                         variant="gradient"
                         color="info"
                         fullWidth
-                        onClick={() => nav("/dasboard")}
+                        onClick={() => handleSignUp()}
                       >
                         Sign Up
                       </MDButton>
@@ -472,7 +477,7 @@ function Cover() {
                         variant="gradient"
                         color="info"
                         fullWidth
-                        onClick={() => nav("/dasboard")}
+                        onClick={() => handleSignUp()}
                       >
                         Sign Up
                       </MDButton>

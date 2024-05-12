@@ -11,6 +11,7 @@ import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import LinearProgress from "@mui/material/LinearProgress";
 import MDButton from "components/MDButton";
+import { LocalGasStationRounded } from "@mui/icons-material";
 
 function SMEProfile() {
   const [step, setStep] = useState(1);
@@ -131,7 +132,7 @@ function SMEProfile() {
           body: formData,
         });
         if (response.ok) {
-          console.log(await response.json());
+          localStorage.set("credit_calculation", await response.json());
           setSuccessMessage("Data submitted successfully!");
         } else {
           setErrorMessage("Failed to submit data.");
@@ -146,7 +147,7 @@ function SMEProfile() {
           body: formData,
         });
         if (response.ok) {
-          console.log(await response.json());
+          localStorage.set("sanciton", await response.json());
           setSuccessMessage("Data submitted successfully!");
         } else {
           setErrorMessage("Failed to submit data.");

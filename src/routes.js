@@ -11,8 +11,9 @@ import SMEFillCard from "layouts/dashboard/components/SMEFillCard";
 import SMEProfile from "layouts/SMEDetails";
 import Borrowers from "layouts/borrowers";
 import LoanApplication from "layouts/Applyloan";
+import DashboardBank from "layouts/dashboardbank";
 
-const routes = [
+const smeRoutes = [
   {
     type: "collapse",
     name: "Dashboard",
@@ -29,22 +30,14 @@ const routes = [
     route: "/loanoffers",
     component: <LoanOffers />,
   },
-  {
-    type: "collapse",
-    name: "Borrowers",
-    key: "borrowers",
-    icon: <AccountBalanceIcon></AccountBalanceIcon>,
-    route: "/borrowersinfo",
-    component: <Borrowers />,
-  },
-  {
-    type: "collapse",
-    name: "Tables",
-    key: "tables",
-    icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Tables",
+  //   key: "tables",
+  //   icon: <Icon fontSize="small">table_view</Icon>,
+  //   route: "/tables",
+  //   component: <Tables />,
+  // },
   {
     type: "collapse",
     name: "Billing",
@@ -79,15 +72,52 @@ const routes = [
   },
   {
     name: "SME Fill up",
-    route: "/smefillup", 
+    route: "/smefillup",
     key: "sme-fill",
-    component: <SMEProfile />
+    component: <SMEProfile />,
   },
   {
     name: "Loan Application",
     route: "/applyloan",
-    component: <LoanApplication />
-  }
+    component: <LoanApplication />,
+  },
 ];
+
+const bankRoutes = [
+  {
+    type: "collapse",
+    name: "Dashboard",
+    key: "dashboard-bank",
+    icon: <Icon fontSize="small">dashboard</Icon>,
+    route: "/dashboardbank",
+    component: <DashboardBank />,
+  },
+  {
+    type: "collapse",
+    name: "Borrowers",
+    key: "borrowers",
+    icon: <AccountBalanceIcon></AccountBalanceIcon>,
+    route: "/borrowersinfo",
+    component: <Borrowers />,
+  },
+  {
+    type: "collapse",
+    name: "Profile",
+    key: "profile",
+    icon: <Icon fontSize="small">person</Icon>,
+    route: "/profile",
+    component: <Profile />,
+  },
+  {
+    type: "collapse",
+    name: "Log Out",
+    key: "log-out",
+    icon: <Icon fontSize="small">logout</Icon>,
+    route: "/authentication/sign-in",
+    component: <SignIn />,
+  },
+];
+
+const routes = [smeRoutes, bankRoutes];
 
 export default routes;

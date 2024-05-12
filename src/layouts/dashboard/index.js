@@ -10,11 +10,7 @@ import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
 import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
-import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
-import Divider from "assets/theme/components/divider";
-import MDButton from "components/MDButton";
 import SMEFillCard from "./components/SMEFillCard";
-
 
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
@@ -33,7 +29,7 @@ function Dashboard() {
             amount: "+20%",
             label: "than last month",
           }}
-        />  
+        />
       </MDBox>
       <MDBox mt={2} py={3}>
         <Grid container spacing={3}>
