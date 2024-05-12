@@ -17,19 +17,25 @@ function Basic() {
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
-  async function handleSub(event){
-    const res = await fetch("http://192.168.170.32:6969/user/login",{
-      method:"POST",
-      body: encodeURI(`username=${(data1)}&password=${data2}`) 
-    })
+  async function handleSub(_) {
+    const res = await fetch("http://192.168.170.32:6969/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        username: data1,
+        password: data2,
+      }).toString(),
+    });
 
-    if(await res.ok){
-      console.log(await res);
+    if (res.ok) {
+      console.log(res);
     }
   }
 
-  const [data1, setData1] = useState("")
-  const [data2, setData2] = useState("")
+  const [data1, setData1] = useState("");
+  const [data2, setData2] = useState("");
 
   return (
     <BasicLayout image={bgImage}>
@@ -52,10 +58,20 @@ function Basic() {
         <MDBox pt={4} pb={3} px={3}>
           <MDBox component="form" role="form">
             <MDBox mb={2}>
-              <MDInput type="email" onChange={(e)=>setData1(e.target.value)} label="Email" fullWidth />
+              <MDInput
+                type="email"
+                onChange={(e) => setData1(e.target.value)}
+                label="Email"
+                fullWidth
+              />
             </MDBox>
             <MDBox mb={2}>
-              <MDInput type="password" onChange={(e)=>setData2(e.target.value)} label="Password" fullWidth />
+              <MDInput
+                type="password"
+                onChange={(e) => setData2(e.target.value)}
+                label="Password"
+                fullWidth
+              />
             </MDBox>
             <MDBox display="flex" alignItems="center" ml={-1}>
               <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -70,7 +86,12 @@ function Basic() {
               </MDTypography>
             </MDBox>
             <MDBox mt={4} mb={1}>
-              <MDButton variant="gradient" color="info" onClick={handleSub} fullWidth>
+              <MDButton
+                variant="gradient"
+                color="info"
+                onClick={handleSub}
+                fullWidth
+              >
                 sign in
               </MDButton>
             </MDBox>
