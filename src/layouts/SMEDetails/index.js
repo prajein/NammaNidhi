@@ -27,6 +27,8 @@ function SMEProfile() {
   const [totalAssets, setTotalAssets] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [sanctionLetters, setSanctionLetters] = useState([]);
+  const [balanceSheet, setBalanceSheet] = useState(null);
 
   const calculateCurrentRatio = () => {
     if (parseFloat(currentLiabilities) === 0) return "Infinity";
@@ -69,7 +71,7 @@ function SMEProfile() {
     return ((parseFloat(revenue) / parseFloat(currentAssets))).toFixed(2);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (step === 1) {
       if (
         !currentAssets ||
@@ -95,18 +97,41 @@ function SMEProfile() {
       return;
     }
     if (step === 3) {
-      // Submit all data
-      let progressValue = 0;
-      const interval = setInterval(() => {
-        progressValue += 10;
-        setProgress(progressValue);
-        if (progressValue === 100) {
-          clearInterval(interval);
+      const formData = new FormData();
+      formData.append("currentAssets", currentAssets);
+      formData.append("currentLiabilities", currentLiabilities);
+      formData.append("inventory", inventory);
+      formData.append("totalDebt", totalDebt);
+      formData.append("shareholdersEquity", shareholdersEquity);
+      formData.append("interestExpense", interestExpense);
+      formData.append("netProfit", netProfit);
+      formData.append("revenue", revenue);
+      formData.append("earningsBeforeInterestTaxes", earningsBeforeInterestTaxes);
+      formData.append("totalAssets", totalAssets);
+      if (sanctionLetters && sanctionLetters.length > 0) {
+        Array.from(sanctionLetters).forEach((file) => {
+          formData.append("sanctionLetters", file);
+        });
+      }
+      formData.append("balanceSheet", balanceSheet);
+      try {
+        const response = await fetch("http://192.168.170.130:5000/calculate_credit", {
+          method: "POST",
+          body: formData,
+          
+        });
+        if (response.ok) {
+          console.log(await response.json());
           setSuccessMessage("Data submitted successfully!");
+        } else {
+          setErrorMessage("Failed to submit data.");
         }
-      }, 1000);
+      } catch (error) {
+        setErrorMessage("Failed to submit data.");
+      }
     }
   };
+  
 
   return (
     <DashboardLayout>
@@ -219,7 +244,24 @@ function SMEProfile() {
                 {step === 3 && (
                   <>
                     <MDTypography variant="h6">Step 3: Upload Documents</MDTypography>
-                    {/* Document upload fields */}
+                    <MDBox mt={2}>
+                      <span style={{fontSize:"12px"}}> Sanction Letters: 
+                        <input 
+                          type="file" 
+                          multiple 
+                          accept=".pdf,.doc,.docx" 
+                          onChange={(e) => setSanctionLetters(e.target.files)} 
+                        />
+                      </span>
+                      <span style={{fontSize:"12px"}}> Balance Sheet: 
+                        <input
+                          fullWidth
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          onChange={(e) => setBalanceSheet(e.target.files[0])}
+                        />
+                      </span>
+                    </MDBox>
                   </>
                 )}
                 <MDBox mt={1}>
