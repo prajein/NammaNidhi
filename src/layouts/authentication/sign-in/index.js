@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 import MDBox from "components/MDBox";
@@ -14,6 +14,8 @@ import { Password } from "@mui/icons-material";
 
 function Basic() {
   const [rememberMe, setRememberMe] = useState(false);
+  const [sme, setSme] = useState(false); 
+  const nav = useNavigate();
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -28,9 +30,14 @@ function Basic() {
         password: data2,
       }).toString(),
     });
-
-    if (res.ok) {
-      console.log(res);
+    if (res && res.is_sme) {
+      setSme(!sme);
+      localStorage.setItem("SME",JSON.stringify(sme));
+      nav("/dashboard");
+    }
+    else{
+      localStorage.setItem("SME",JSON.stringify(sme));
+      nav("/dashboardbank");
     }
   }
 
@@ -100,13 +107,13 @@ function Basic() {
                 Don&apos;t have an account?{" "}
                 <MDTypography
                   component={Link}
-                  to="/authentication/sign-up"
+                  to="/dashboard"
                   variant="button"
                   color="info"
                   fontWeight="medium"
                   textGradient
                 >
-                  Sign up
+                  Sign in
                 </MDTypography>
               </MDTypography>
             </MDBox>

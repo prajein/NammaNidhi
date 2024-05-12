@@ -52,6 +52,13 @@ function LoanApplyCard() {
         <MDTypography variant="h6" fontWeight="medium">
           Apply for Loan
         </MDTypography>
+        <MDBox display="flex" justifyContent="center" py={1}>
+          <a href="/smefillup" style={{ textDecoration: "none" }}>
+            <MDButton variant="contained" color="primary">
+              Complete Finishing Details
+            </MDButton>
+          </a>
+        </MDBox>
         <a href="/applyloan" style={{ textDecoration: "none" }}>
         <MDButton variant="gradient" color="dark">
           <Icon sx={{ fontWeight: "bold" }}>add</Icon>
